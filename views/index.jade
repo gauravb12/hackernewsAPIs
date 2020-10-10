@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h1= title
+  p
+    b
+      pre 
+        a(href='/v1/top-stories' target='_blank') API 1: /v1/top-stories
+
+  p.
+    Returns the top 10 stories ranked by score in the last 10 minutes (cached data). Each story will have the title, url, score, time of submission, and the user who submitted it.
+  i.
+    The URLs involved in serving the API are cached once they are served for the given period of 10 minutes. This reduces the response time substantially, giving improved user experience and reduced server load.
+
+  hr
+
+  p
+    b
+      pre 
+        a(href='/v1/comments/24739746' target='_blank') API 2: /v1/comments/:itemId (/v1/comments/24739746)
+
+  p.
+    Returns the top 10 parent comments on a given story, sorted by the total number of comments (including child comments) per thread. Each comment will have the comment's text, the user’s HN handle, and their HN age. The HN age of a user is basically how old their Hacker News profile is in years.
+  i.
+    Similar caching is done as in the previous one. Due to complex query and sorting involved caching comes handy and serves well.
+
+  hr
+
+  p
+    b
+      pre 
+        a(href='/v1/past-stories' target='_blank') API 3: /v1/past-stories
+
+  p.
+    Returns all the past top stories that were served previously.
+  i.
+    Every time API 1 is served, the served Item Ids are saved so as to be served in this API. This one pulls out the details of those top-stories which have been served previously.
